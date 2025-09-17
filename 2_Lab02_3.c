@@ -1,32 +1,21 @@
-#define CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-
-#include <stdio.h>
+#include <string.h>
 
 int main(void) {
-    int N, M;
-    scanf("%d %d", &N, &M);
+    char str[1000001];  // 문제 조건: 문자열 길이 ≤ 1,000,000
+    int count = 0;
+    char* token;
 
-    int A[100][100], B[100][100];
+    // 문자열 입력 (공백 포함)
+    fgets(str, sizeof(str), stdin);
 
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < M; j++) {
-            scanf("%d", &A[i][j]);
-        }
+    // 공백 기준으로 단어 분리
+    token = strtok(str, " \n");
+    while (token != NULL) {
+        count++;
+        token = strtok(NULL, " \n");
     }
 
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < M; j++) {
-            scanf("%d", &B[i][j]);
-        }
-    }
-
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < M; j++) {
-            printf("%d ", A[i][j] + B[i][j]);
-        }
-        printf("\n");
-    }
-
+    printf("%d\n", count);
     return 0;
 }
